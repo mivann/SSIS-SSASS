@@ -1,0 +1,1650 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/12/2018 9:44:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-UST2MTL"
+  DTS:CreatorName="DESKTOP-UST2MTL\marie"
+  DTS:DTSID="{12102070-FF6F-45FC-BE87-9611BB1ED7AF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{661EF295-CAFE-41FE-9DCC-681D7625AF21}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{48A5F800-9E00-4D38-B471-FAAE97C9D6F4}"
+      DTS:ObjectName="DESKTOP-UST2MTL\MARIE.sjabDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-UST2MTL\MARIE;Initial Catalog=sjabDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7B6F5F69-4844-4992-9F64-747164748427}"
+      DTS:ObjectName="DESKTOP-UST2MTL\MARIE.sjabDW1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-UST2MTL\MARIE;Initial Catalog=sjabDW;Integrated Security=True;Application Name=SSIS-Package-{7B6F5F69-4844-4992-9F64-747164748427}DESKTOP-UST2MTL\MARIE.sjabDW1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{335690FF-09F4-4579-B3A2-B0511A83D5A3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[CarrierID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="UniqueCarrier"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[UniqueCarrier]"
+                      name="CarrierID"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[UniqueCarrier]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">CarrierID</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\flight + routes connection"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="flight + routes connection"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Routes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Routes]) [refTable]
+where [refTable].[Origin] = ? and [refTable].[Destination] = ? and [refTable].[Distance] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Origin" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Destination" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Distance" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RouteID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Origin]};#{Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Dest]};#{Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Distance]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\flight + routes connection.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input].Columns[Origin]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Origin"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Origin]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Origin</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input].Columns[Dest]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Dest"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Dest]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Destination</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input].Columns[Distance]"
+                      cachedDataType="i4"
+                      cachedName="Distance"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Distance]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Distance</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Match Output].Columns[RouteID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Match Output].Columns[RouteID]"
+                      name="RouteID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">RouteID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\flightDW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="flightDW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Flightdata]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\flightDW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DayofMonth]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DayofMonth]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DayofMonth]"
+                      name="DayofMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DayOfWeek]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeek]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DayOfWeek]"
+                      name="DayOfWeek"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepTime]"
+                      name="DepTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSDepTime]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSDepTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSDepTime]"
+                      name="CRSDepTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrTime]"
+                      name="ArrTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSArrTime]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSArrTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSArrTime]"
+                      name="CRSArrTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[UniqueCarrier]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[UniqueCarrier]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[UniqueCarrier]"
+                      name="UniqueCarrier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[FlightNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[FlightNum]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[FlightNum]"
+                      name="FlightNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TailNum]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TailNum]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TailNum]"
+                      name="TailNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ActualElapsedTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ActualElapsedTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ActualElapsedTime]"
+                      name="ActualElapsedTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSElapsedTime]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSElapsedTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSElapsedTime]"
+                      name="CRSElapsedTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[AirTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[AirTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[AirTime]"
+                      name="AirTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrDelay]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrDelay]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrDelay]"
+                      name="ArrDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepDelay]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepDelay]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepDelay]"
+                      name="DepDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Origin]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Origin]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Origin]"
+                      name="Origin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Dest]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Dest]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Dest]"
+                      name="Dest"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Distance]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Distance]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Distance]"
+                      name="Distance"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiIn]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TaxiIn]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiIn]"
+                      name="TaxiIn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiOut]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TaxiOut]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiOut]"
+                      name="TaxiOut"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Cancelled]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Cancelled]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Cancelled]"
+                      name="Cancelled"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CancellationCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CancellationCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CancellationCode]"
+                      name="CancellationCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Diverted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Diverted]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Diverted]"
+                      name="Diverted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CarrierDelay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CarrierDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CarrierDelay]"
+                      name="CarrierDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[WeatherDelay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[WeatherDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[WeatherDelay]"
+                      name="WeatherDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[NASDelay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[NASDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[NASDelay]"
+                      name="NASDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[SecurityDelay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[SecurityDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[SecurityDelay]"
+                      name="SecurityDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[LateAircraftDelay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[LateAircraftDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[LateAircraftDelay]"
+                      name="LateAircraftDelay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSDepartureTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSDepartureTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSDepartureTime]"
+                      name="CRSDepartureTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSArrivalTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSArrivalTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSArrivalTime]"
+                      name="CRSArrivalTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepartureTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepartureTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepartureTime]"
+                      name="DepartureTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrivalTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrivalTime]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrivalTime]"
+                      name="ArrivalTime"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DayofMonth]"
+                      dataType="i4"
+                      name="DayofMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeek]"
+                      dataType="i4"
+                      name="DayOfWeek" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="DepTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSDepTime]"
+                      dataType="i4"
+                      name="CRSDepTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="ArrTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSArrTime]"
+                      dataType="i4"
+                      name="CRSArrTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[UniqueCarrier]"
+                      dataType="wstr"
+                      length="50"
+                      name="UniqueCarrier" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[FlightNum]"
+                      dataType="i4"
+                      name="FlightNum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TailNum]"
+                      dataType="wstr"
+                      length="50"
+                      name="TailNum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ActualElapsedTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="ActualElapsedTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSElapsedTime]"
+                      dataType="i4"
+                      name="CRSElapsedTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[AirTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="AirTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrDelay]"
+                      dataType="wstr"
+                      length="50"
+                      name="ArrDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepDelay]"
+                      dataType="wstr"
+                      length="50"
+                      name="DepDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Origin]"
+                      dataType="wstr"
+                      length="50"
+                      name="Origin" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Dest]"
+                      dataType="wstr"
+                      length="50"
+                      name="Dest" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Distance]"
+                      dataType="i4"
+                      name="Distance" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TaxiIn]"
+                      dataType="i4"
+                      name="TaxiIn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[TaxiOut]"
+                      dataType="i4"
+                      name="TaxiOut" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Cancelled]"
+                      dataType="i4"
+                      name="Cancelled" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CancellationCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="CancellationCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[Diverted]"
+                      dataType="i4"
+                      name="Diverted" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CarrierDelay]"
+                      dataType="i4"
+                      name="CarrierDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[WeatherDelay]"
+                      dataType="i4"
+                      name="WeatherDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[NASDelay]"
+                      dataType="i4"
+                      name="NASDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[SecurityDelay]"
+                      dataType="i4"
+                      name="SecurityDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[LateAircraftDelay]"
+                      dataType="i4"
+                      name="LateAircraftDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSDepartureTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="CRSDepartureTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[CRSArrivalTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="CRSArrivalTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[DepartureTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="DepartureTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].ExternalColumns[ArrivalTime]"
+                      dataType="wstr"
+                      length="50"
+                      name="ArrivalTime" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DayofMonth]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DayofMonth]"
+                      name="DayofMonth" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DayOfWeek]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DayOfWeek]"
+                      name="DayOfWeek" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepTime]"
+                      name="DepTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSDepTime]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSDepTime]"
+                      name="CRSDepTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrTime]"
+                      name="ArrTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSArrTime]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSArrTime]"
+                      name="CRSArrTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[UniqueCarrier]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[UniqueCarrier]"
+                      name="UniqueCarrier" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[FlightNum]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[FlightNum]"
+                      name="FlightNum" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TailNum]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TailNum]"
+                      name="TailNum" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ActualElapsedTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ActualElapsedTime]"
+                      name="ActualElapsedTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSElapsedTime]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSElapsedTime]"
+                      name="CRSElapsedTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[AirTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[AirTime]"
+                      name="AirTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrDelay]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrDelay]"
+                      name="ArrDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepDelay]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepDelay]"
+                      name="DepDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Origin]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Origin]"
+                      name="Origin" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Dest]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Dest]"
+                      name="Dest" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Distance]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Distance]"
+                      name="Distance" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TaxiIn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TaxiIn]"
+                      name="TaxiIn" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TaxiOut]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[TaxiOut]"
+                      name="TaxiOut" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Cancelled]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Cancelled]"
+                      name="Cancelled" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CancellationCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CancellationCode]"
+                      name="CancellationCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Diverted]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[Diverted]"
+                      name="Diverted" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CarrierDelay]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CarrierDelay]"
+                      name="CarrierDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[WeatherDelay]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[WeatherDelay]"
+                      name="WeatherDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[NASDelay]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[NASDelay]"
+                      name="NASDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[SecurityDelay]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[SecurityDelay]"
+                      name="SecurityDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[LateAircraftDelay]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[LateAircraftDelay]"
+                      name="LateAircraftDelay" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSDepartureTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSDepartureTime]"
+                      name="CRSDepartureTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSArrivalTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[CRSArrivalTime]"
+                      name="CRSArrivalTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepartureTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[DepartureTime]"
+                      name="DepartureTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrivalTime]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ArrivalTime]"
+                      name="ArrivalTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\FlightSDW"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FlightSDW"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Flights]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\FlightSDW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UST2MTL\MARIE.sjabDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[FlightNum]"
+                      cachedDataType="i4"
+                      cachedName="FlightNum"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[FlightNum]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[FlightNum]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[ActualElapsedTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ActualElapsedTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ActualElapsedTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ActualElapsedTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[CRSElapsedTime]"
+                      cachedDataType="i4"
+                      cachedName="CRSElapsedTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSElapsedTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSElapsedTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[TaxiIn]"
+                      cachedDataType="i4"
+                      cachedName="TaxiIn"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[TaxiIn]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiIn]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[TaxiOut]"
+                      cachedDataType="i4"
+                      cachedName="TaxiOut"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[TaxiOut]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TaxiOut]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[Cancelled]"
+                      cachedDataType="i4"
+                      cachedName="Cancelled"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Cancelled]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Cancelled]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[CancellationCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CancellationCode"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CancellationCode]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CancellationCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[Diverted]"
+                      cachedDataType="i4"
+                      cachedName="Diverted"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Diverted]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[Diverted]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[CarrierDelay]"
+                      cachedDataType="i4"
+                      cachedName="CarrierDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CarrierDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CarrierDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[WeatherDelay]"
+                      cachedDataType="i4"
+                      cachedName="WeatherDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[WeatherDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[WeatherDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[NASDelay]"
+                      cachedDataType="i4"
+                      cachedName="NASDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[NASDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[NASDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[SecurityDelay]"
+                      cachedDataType="i4"
+                      cachedName="SecurityDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[SecurityDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[SecurityDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[LateAircraftDelay]"
+                      cachedDataType="i4"
+                      cachedName="LateAircraftDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[LateAircraftDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[LateAircraftDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[CRSDepartureTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CRSDepartureTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSDepartureTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSDepartureTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[CRSArrivalTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CRSArrivalTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSArrivalTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[CRSArrivalTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[DepartureTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DepartureTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[DepartureTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepartureTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[ArrivalTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ArrivalTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalTime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrivalTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[RouteID]"
+                      cachedDataType="i4"
+                      cachedName="RouteID"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[RouteID]"
+                      lineageId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Match Output].Columns[RouteID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[TailNum]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TailNum"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Tailnumber]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[TailNum]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[ArrDelay]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ArrDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[ArrDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[DepDelay]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DepDelay"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[DepartureDelay]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[DepDelay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[UniqueCarrier]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="UniqueCarrier"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CarrierID]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[UniqueCarrier]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].Columns[AirTime]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AirTime"
+                      externalMetadataColumnId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Airtime]"
+                      lineageId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output].Columns[AirTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[FlightNum]"
+                      dataType="i4"
+                      name="FlightNum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ActualElapsedTime]"
+                      dataType="i4"
+                      name="ActualElapsedTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSElapsedTime]"
+                      dataType="i4"
+                      name="CRSElapsedTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[TaxiIn]"
+                      dataType="i4"
+                      name="TaxiIn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[TaxiOut]"
+                      dataType="i4"
+                      name="TaxiOut" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Cancelled]"
+                      dataType="i4"
+                      name="Cancelled" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CancellationCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="CancellationCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Diverted]"
+                      dataType="i4"
+                      name="Diverted" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CarrierDelay]"
+                      dataType="i4"
+                      name="CarrierDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[WeatherDelay]"
+                      dataType="i4"
+                      name="WeatherDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[NASDelay]"
+                      dataType="i4"
+                      name="NASDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[SecurityDelay]"
+                      dataType="i4"
+                      name="SecurityDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[LateAircraftDelay]"
+                      dataType="i4"
+                      name="LateAircraftDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSDepartureTime]"
+                      dataType="dbTime2"
+                      name="CRSDepartureTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CRSArrivalTime]"
+                      dataType="dbTime2"
+                      name="CRSArrivalTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[DepartureTime]"
+                      dataType="dbTime2"
+                      name="DepartureTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalTime]"
+                      dataType="dbTime2"
+                      name="ArrivalTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[RouteID]"
+                      dataType="i4"
+                      name="RouteID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[CarrierID]"
+                      dataType="wstr"
+                      length="50"
+                      name="CarrierID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Tailnumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="Tailnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[Airtime]"
+                      dataType="i4"
+                      name="Airtime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalDelay]"
+                      dataType="i4"
+                      name="ArrivalDelay" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input].ExternalColumns[DepartureDelay]"
+                      dataType="i4"
+                      name="DepartureDelay" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\FlightSDW.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FlightSDW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FlightSDW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FlightSDW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\FlightSDW.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\flight + routes connection.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\flight + routes connection.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\flightDW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5BD7D848-BCF4-45D7-9007-32E17DB58060}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{48A5F800-9E00-4D38-B471-FAAE97C9D6F4}"
+          SQLTask:SqlStatementSource="ALTER TABLE Flights ADD FlightID int identity (1,1)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF59618E-22E7-45D2-96E9-C801D79BE3D4}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="84.1666654124855,55.4666656748454" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="88.7499986775219,152.533330605825" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="160.166665412486,98.133332341512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5833332650364,54.3999982643128"
+              Start="0,0"
+              End="10.5833332650364,46.8999982643128">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1999991321564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.1999991321564"
+                    Point2="0,27.1999991321564"
+                    Point3="4,27.1999991321564" />
+                  <mssgle:LineSegment
+                    End="6.5833332650364,27.1999991321564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.5833332650364,27.1999991321564"
+                    Point2="10.5833332650364,27.1999991321564"
+                    Point3="10.5833332650364,31.1999991321564" />
+                  <mssgle:LineSegment
+                    End="10.5833332650364,46.8999982643128" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="201.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\flight + routes connection"
+          TopLeft="120.666666666667,167.333333333333" />
+        <NodeLayout
+          Size="128,42.6666666666667"
+          Id="Package\Data Flow Task\FlightSDW"
+          TopLeft="164,321.333333333333" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="150,250.666666666667" />
+        <NodeLayout
+          Size="120,42.6666666666667"
+          Id="Package\Data Flow Task\flightDW"
+          TopLeft="159.333333333333,74" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="220.333333333333,116.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.6666666666666"
+              Start="0,0"
+              End="0,43.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="224.333333333333,210">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.6666666666667"
+              Start="0,0"
+              End="0,33.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.7786458333334,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="227.666666666667,293.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\flight + routes connection">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Routes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\FlightSDW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\flightDW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

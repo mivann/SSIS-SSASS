@@ -1,0 +1,6 @@
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\bin\Model.asdatabase
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\bin\Model.deploymenttargets
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\bin\Model.deploymentoptions
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\obj\Development\Model.asdatabase
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\obj\Development\Model.deploymentoptions
+c:\users\marie\documents\visual studio 2015\Projects\Model2\Model2\obj\Development\Model.deploymenttargets

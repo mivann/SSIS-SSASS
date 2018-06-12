@@ -1,0 +1,461 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "sv-SE",
+    "dataSources": [
+      {
+        "name": "SqlServer DESKTOP-UST2MTLMARIE sjabDW",
+        "connectionString": "Provider=SQLNCLI11;Data Source=DESKTOP-UST2MTL\\MARIE;Initial Catalog=sjabDW;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "MARIE",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "AirportDW",
+        "columns": [
+          {
+            "name": "AirportID",
+            "dataType": "string",
+            "sourceColumn": "AirportID",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Airportname",
+            "dataType": "string",
+            "sourceColumn": "Airportname",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "State",
+            "dataType": "string",
+            "sourceColumn": "State",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Country",
+            "dataType": "string",
+            "sourceColumn": "Country",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "string",
+            "sourceColumn": "Latitude",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "string",
+            "sourceColumn": "Longitude",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "AirportDW",
+            "dataView": "full",
+            "source": {
+              "query": " \t\t\t\tSELECT [dbo].[AirportDW].*   FROM [dbo].[AirportDW] ",
+              "dataSource": "SqlServer DESKTOP-UST2MTLMARIE sjabDW"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Measure 1",
+            "expression": "SUMMARIZECOLUMNS(Flights[CarrierID],FILTER(Flights, Flights[ArrivalDelay] > 0 && Flights[ActualElapsedTime] >0), \"TotalDelay\",SUM(Flights[ArrivalDelay]), \"TotalTime\", SUM(Flights[ActualElapsedTime]),\"NumberOFDelayedFlights\",COUNT(Flights[FlightID]))"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[AirportDW].*   FROM [dbo].[AirportDW] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "AirportDW"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "CarrierDW",
+        "columns": [
+          {
+            "name": "CarrierID",
+            "dataType": "string",
+            "sourceColumn": "CarrierID",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Description",
+            "dataType": "string",
+            "sourceColumn": "Description",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CarrierDW",
+            "dataView": "full",
+            "source": {
+              "query": " \t\t\t\tSELECT [dbo].[CarrierDW].*   FROM [dbo].[CarrierDW] ",
+              "dataSource": "SqlServer DESKTOP-UST2MTLMARIE sjabDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[CarrierDW].*   FROM [dbo].[CarrierDW] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "CarrierDW"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Flights",
+        "columns": [
+          {
+            "name": "CarrierID",
+            "dataType": "string",
+            "sourceColumn": "CarrierID",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FlightNum",
+            "dataType": "int64",
+            "sourceColumn": "FlightNum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Tailnumber",
+            "dataType": "string",
+            "sourceColumn": "Tailnumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ActualElapsedTime",
+            "dataType": "int64",
+            "sourceColumn": "ActualElapsedTime",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CRSElapsedTime",
+            "dataType": "int64",
+            "sourceColumn": "CRSElapsedTime",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Airtime",
+            "dataType": "int64",
+            "sourceColumn": "Airtime",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ArrivalDelay",
+            "dataType": "int64",
+            "sourceColumn": "ArrivalDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DepartureDelay",
+            "dataType": "int64",
+            "sourceColumn": "DepartureDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TaxiIn",
+            "dataType": "int64",
+            "sourceColumn": "TaxiIn",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TaxiOut",
+            "dataType": "int64",
+            "sourceColumn": "TaxiOut",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Cancelled",
+            "dataType": "int64",
+            "sourceColumn": "Cancelled",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CancellationCode",
+            "dataType": "string",
+            "sourceColumn": "CancellationCode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Diverted",
+            "dataType": "int64",
+            "sourceColumn": "Diverted",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CarrierDelay",
+            "dataType": "int64",
+            "sourceColumn": "CarrierDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "WeatherDelay",
+            "dataType": "int64",
+            "sourceColumn": "WeatherDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "NASDelay",
+            "dataType": "int64",
+            "sourceColumn": "NASDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SecurityDelay",
+            "dataType": "int64",
+            "sourceColumn": "SecurityDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LateAircraftDelay",
+            "dataType": "int64",
+            "sourceColumn": "LateAircraftDelay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CRSDepartureTime",
+            "dataType": "dateTime",
+            "sourceColumn": "CRSDepartureTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "CRSArrivalTime",
+            "dataType": "dateTime",
+            "sourceColumn": "CRSArrivalTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "DepartureTime",
+            "dataType": "dateTime",
+            "sourceColumn": "DepartureTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "ArrivalTime",
+            "dataType": "dateTime",
+            "sourceColumn": "ArrivalTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "RouteID",
+            "dataType": "int64",
+            "sourceColumn": "RouteID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FlightID",
+            "dataType": "int64",
+            "sourceColumn": "FlightID",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Flights",
+            "dataView": "full",
+            "source": {
+              "query": " \t\t\t\tSELECT [dbo].[Flights].*   FROM [dbo].[Flights] ",
+              "dataSource": "SqlServer DESKTOP-UST2MTLMARIE sjabDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Flights].*   FROM [dbo].[Flights] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Flights"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Planedata",
+        "columns": [
+          {
+            "name": "TailNumber",
+            "dataType": "string",
+            "sourceColumn": "TailNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "OwnerType",
+            "dataType": "string",
+            "sourceColumn": "OwnerType",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Manufacturer",
+            "dataType": "string",
+            "sourceColumn": "Manufacturer",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "IssueDate",
+            "dataType": "string",
+            "sourceColumn": "IssueDate",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Model",
+            "dataType": "string",
+            "sourceColumn": "Model",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Status",
+            "dataType": "string",
+            "sourceColumn": "Status",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AircraftType",
+            "dataType": "string",
+            "sourceColumn": "AircraftType",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "EngineType",
+            "dataType": "string",
+            "sourceColumn": "EngineType",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Year",
+            "dataType": "string",
+            "sourceColumn": "Year",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Planedata",
+            "dataView": "full",
+            "source": {
+              "query": " \t\t\t\tSELECT [dbo].[Planedata].*   FROM [dbo].[Planedata] ",
+              "dataSource": "SqlServer DESKTOP-UST2MTLMARIE sjabDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Planedata].*   FROM [dbo].[Planedata] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Planedata"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Routes",
+        "columns": [
+          {
+            "name": "Origin",
+            "dataType": "string",
+            "sourceColumn": "Origin",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Destination",
+            "dataType": "string",
+            "sourceColumn": "Destination",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Distance",
+            "dataType": "int64",
+            "sourceColumn": "Distance",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "RouteID",
+            "dataType": "int64",
+            "sourceColumn": "RouteID",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Routes",
+            "dataView": "full",
+            "source": {
+              "query": " \t\t\t\tSELECT [dbo].[Routes].*   FROM [dbo].[Routes] ",
+              "dataSource": "SqlServer DESKTOP-UST2MTLMARIE sjabDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Routes].*   FROM [dbo].[Routes] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Routes"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
